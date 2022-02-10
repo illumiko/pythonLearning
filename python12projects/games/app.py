@@ -3,7 +3,7 @@ from functools import partial
 from gameCore.janken import janken
 from gameCore.guessTheNumber import guessNum
 from gameCore.compGuessYourNumber import compGuess
-from gameCore.Hangman import hangman
+from gameCore.hangman import game
 # utilities
 from gameCore.utils import utils
 def gameMenu():
@@ -22,7 +22,7 @@ def gameMenu():
         partial(guessNum.Num,min, max),
         partial(compGuess.Guess,min, max),
         partial(janken.RPS,5),
-        partial(hangman.Hangman,utils.words),
+        partial(game.hangmanGame,utils.words),
     ]
     games[usrInpu]()
 

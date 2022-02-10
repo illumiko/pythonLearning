@@ -1,6 +1,6 @@
 import string
 import random
-def Hangman(words):
+def hangmanGame(words):
     # this filters words with - and a white space
     def filterWords():
         word = random.choice(words)
