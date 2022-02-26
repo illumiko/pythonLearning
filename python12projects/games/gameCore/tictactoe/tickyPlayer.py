@@ -1,33 +1,44 @@
 class Player:
-    def __init__(self, name,letter):
+    def __init__(self, name):
         self._name = name
         self.points = 0
-        self.letter = letter
 
     @property
     def name(self):
         return self._name
 
 class HumanPlayer(Player):
-    def __init__(self, name, letter):
-        super().__init__(name, letter)
+    def __init__(self, name):
+        super().__init__(name)
         self.withdrawed = False
 
     def withdraw(self):
         self.withdrawed = True
         pass
-    
-    def makeMove(self,gameBoard):
-        usrInput = input("Enter a number from(0-8)")
-        gameBoard[usrInput] = self.letter
+   
+    def makeMove(self,gameBoard,letter):
+        usrInput = int(input("Enter a number from(0-8)"))
+        while gameBoard[usrInput] != "_":
+            print("The square you selected has already been used")
+            usrInput = int(input("Enter a number from(0-8)"))
+            gameBoard[usrInput] = letter
+        else:
+            gameBoard[usrInput] = letter
+        return letter
 
 class ComputerPlayer(Player):
-    def __init__(self, name, letter):
-        super().__init__(name, letter)
+    def __init__(self, name):
+        super().__init__(name)
 
-    def makeMove(self, gameBoard):
+    def makeMove(self, gameBoard,letter):
         import random
         index = random.choice([i for i in range(9)])
-        gameBoard[index] = self.letter
+        while gameBoard[index] != "_":
+            index = random.choice([i for i in range(9)])
+            gameBoard[index] = letter
+        else:
+            gameBoard[index] = letter
+        return letter
+
 
 
